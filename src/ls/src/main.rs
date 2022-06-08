@@ -3,7 +3,9 @@
 mod lib;
 mod ext_hash;
 mod file;
+mod syntax;
 
+use std::any::Any;
 use std::fmt::format;
 use std::path::{Path, PathBuf};
 
@@ -49,6 +51,6 @@ fn main() {
         let mut hash = ExtHash::new();
 
         let mut file = File::new(None);
-        println!("{}", file.get_name());
+        println!("{:?}", file.get_name());
     }
 }

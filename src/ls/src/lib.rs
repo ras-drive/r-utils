@@ -13,7 +13,7 @@ pub mod lib {
                 match depth {
                     Some(d) => {
                         for entry in WalkDir::new(name.to_string()).max_depth(d).into_iter().filter_map(|e| e.ok()) {
-                            println!("{}", entry.path().display());
+                            println!("{}", entry.path().iter().last().unwrap().to_os_string().into_string().unwrap());
                         }
                     }
                     None => {
