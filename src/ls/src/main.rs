@@ -1,12 +1,23 @@
+#![feature(fmt_internals)]
+
 mod lib;
+mod ext_hash;
+mod file;
 
 use std::fmt::format;
 use std::path::{Path, PathBuf};
 use clap::{Arg, Command};
 use ls::lib::search;
+use crate::ext_hash::ext_hash::{ExtHash};
+use crate::file::file::File;
 
 
 fn main() {
+    let mut hash = ExtHash::new();
+
+    let mut file = File::new(None);
+    println!("{}", file.get_name());
+
     let matches = Command::new("ls")
         .version("0.1.0")
         .author("Sarah Petkovic")

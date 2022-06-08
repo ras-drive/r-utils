@@ -1,5 +1,5 @@
 pub mod lib {
-    use walkdir::{WalkDir};
+    use walkdir::WalkDir;
 
     // Result<(), dyn std::error::Error>
     pub fn search(dir_name: Option<String>, depth: Option<usize>) -> () {
@@ -12,12 +12,12 @@ pub mod lib {
             Some(name) => {
                 match depth {
                     Some(d) => {
-                        for entry in WalkDir::new(dir_name.unwrap()).max_depth(d).into_iter().filter_map(|e| e.ok()) {
+                        for entry in WalkDir::new(name.to_string()).max_depth(d).into_iter().filter_map(|e| e.ok()) {
                             println!("{}", entry.path().display());
                         }
                     }
                     None => {
-                        for entry in WalkDir::new(dir_name.unwrap()).max_depth(1).into_iter().filter_map(|e| e.ok()) {
+                        for entry in WalkDir::new(name.to_string()).max_depth(1).into_iter().filter_map(|e| e.ok()) {
                             println!("{}", entry.path().display());
                         }
                     }
