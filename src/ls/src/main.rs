@@ -49,8 +49,12 @@ fn main() {
         search(None, None);
 
         let mut hash = ExtHash::new();
+        hash.push(String::from("TEST KEY"), String::from("TEST VALUE"));
+
 
         let mut file = File::new(None);
-        println!("{:?}", file.get_name());
+        file.set_name("./test.txt");
+
+        println!("{:?}", &file.get_perms().unwrap());
     }
 }
