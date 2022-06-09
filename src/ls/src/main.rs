@@ -10,7 +10,8 @@ use std::path::{Path, PathBuf};
 use clap::{Arg, Command};
 
 use crate::lib::lib::search;
-use crate::syntax::syntax::get_long;
+use crate::syntax::syntax::{get_long, get_metadata};
+use crate::file_list::file_list::FileList;
 
 fn main() {
     println!("WARNING: THIS PROGRAM IS MAJORLY WIP!");
@@ -45,8 +46,15 @@ fn main() {
     } else {
         search(None, None);
 
+        let mut fl = FileList::new();
+        fl.add(String::from("test.txt"));
+        fl.add(String::from("test2.txt"));
+
+        fl.print_long();
+        /*
         let file_name = "test.txt";
         let meta = syntax::syntax::get_metadata(file_name);
         println!("{:?}", get_long(meta, file_name));
+         */
     }
 }

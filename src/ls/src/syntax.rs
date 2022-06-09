@@ -12,6 +12,7 @@ pub mod syntax {
     fn get_perms(mut meta: &Metadata) -> String {
         let perms = meta.permissions().mode();
         let mut string_buf = String::new();
+        // for i in perms.to_string().chars() {
         for i in perms.to_string().chars() {
             match i.to_string().parse().unwrap() {
                 7 => string_buf.push_str(&*format!("{}{}{}", "r", "w", "x")), // "rwx"
@@ -22,7 +23,7 @@ pub mod syntax {
                 2 => string_buf.push_str(&*format!("{}{}{}", "-", "w", "-")), // "-w-"
                 1 => string_buf.push_str(&*format!("{}{}{}", "-", "-", "x")), // "--x"
                 _ => {
-                    eprintln!("error while reading file permissions")
+                    break
                 }
             }
         }
