@@ -6,6 +6,7 @@ mod file;
 mod syntax;
 
 use std::any::Any;
+use std::borrow::Borrow;
 use std::fmt::format;
 use std::path::{Path, PathBuf};
 
@@ -14,6 +15,7 @@ use clap::{Arg, Command};
 use crate::lib::lib::search;
 use crate::ext_hash::ext_hash::{ExtHash};
 use crate::file::file::File;
+use crate::syntax::syntax::{get_date, get_owner, get_perms};
 
 fn main() {
     println!("WARNING: THIS PROGRAM IS MAJORLY WIP!");
@@ -51,10 +53,7 @@ fn main() {
         let mut hash = ExtHash::new();
         hash.push(String::from("TEST KEY"), String::from("TEST VALUE"));
 
-
-        let mut file = File::new(None);
-        file.set_name("./test.txt");
-
-        println!("{:?}", &file.get_perms().unwrap());
+        let meta = syntax::syntax::get_metadata("test.txt");
+        println!("{:?}", get_date(meta));
     }
 }
