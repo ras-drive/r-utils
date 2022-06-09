@@ -1,9 +1,6 @@
-// #![feature(fmt_internals)]
-
 mod lib;
-mod ext_hash;
-mod file;
 mod syntax;
+mod file_list;
 
 use std::any::Any;
 use std::borrow::Borrow;
@@ -13,9 +10,7 @@ use std::path::{Path, PathBuf};
 use clap::{Arg, Command};
 
 use crate::lib::lib::search;
-use crate::ext_hash::ext_hash::{ExtHash};
-use crate::file::file::File;
-use crate::syntax::syntax::{get_date, get_owner, get_perms};
+use crate::syntax::syntax::get_long;
 
 fn main() {
     println!("WARNING: THIS PROGRAM IS MAJORLY WIP!");
@@ -50,10 +45,8 @@ fn main() {
     } else {
         search(None, None);
 
-        let mut hash = ExtHash::new();
-        hash.push(String::from("TEST KEY"), String::from("TEST VALUE"));
-
-        let meta = syntax::syntax::get_metadata("test.txt");
-        println!("{:?}", get_date(meta));
+        let file_name = "test.txt";
+        let meta = syntax::syntax::get_metadata(file_name);
+        println!("{:?}", get_long(meta, file_name));
     }
 }

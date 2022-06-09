@@ -8,6 +8,6 @@ edition = "2021"
 [dependencies]
 clap = { version = "3.1.18", features = ["derive"] }
 walkdir = "2"
-chrono = { version = "0.4", features = ["unstable-locales"] }
-filetime = "0.2"
-permissions = "0.3.0"
+#chrono = { version = "0.4", features = ["unstable-locales"] }
+#filetime = "0.2"
+#permissions = "0.3.0"

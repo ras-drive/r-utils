@@ -4,35 +4,36 @@ pub mod syntax {
     use std::os::unix::fs::{MetadataExt, PermissionsExt};
     use std::time::{SystemTime, UNIX_EPOCH};
 
+
     pub fn get_metadata(name: &str) -> Metadata {
         fs::metadata(&name).unwrap()
     }
 
-    pub fn get_perms(mut meta: Metadata) -> String {
+    fn get_perms(mut meta: &Metadata) -> String {
         let perms = meta.permissions().mode();
-        let mut perm_string = String::new();
+        let mut string_buf = String::new();
         for i in perms.to_string().chars() {
             match i.to_string().parse().unwrap() {
-                7 => perm_string.push_str("rwx"),
-                6 => perm_string.push_str("rw-"),
-                5 => perm_string.push_str("r-x"),
-                4 => perm_string.push_str("r--"),
-                3 => perm_string.push_str("-wx"),
-                2 => perm_string.push_str("-w-"),
-                1 => perm_string.push_str("--x"),
+                7 => string_buf.push_str(&*format!("{}{}{}", "r", "w", "x")), // "rwx"
+                6 => string_buf.push_str(&*format!("{}{}{}", "r", "w", "-")), // "rw-"
+                5 => string_buf.push_str(&*format!("{}{}{}", "r", "-", "x")), // "r-x"
+                4 => string_buf.push_str(&*format!("{}{}{}", "r", "-", "-")), // "r--"
+                3 => string_buf.push_str(&*format!("{}{}{}", "-", "w", "x")), // "-wx"
+                2 => string_buf.push_str(&*format!("{}{}{}", "-", "w", "-")), // "-w-"
+                1 => string_buf.push_str(&*format!("{}{}{}", "-", "-", "x")), // "--x"
                 _ => {
                     eprintln!("error while reading file permissions")
                 }
             }
         }
-        perm_string
+        string_buf
     }
 
-    pub fn get_owner(meta: Metadata) -> u32 {
+    fn get_owner(meta: &Metadata) -> u32 {
         meta.uid()
     }
 
-    pub fn get_date(meta: Metadata) -> String {
+    fn get_date(meta: &Metadata) -> String {
         time_to_http_date_string(meta.modified().unwrap())
     }
 
@@ -69,7 +70,36 @@ pub mod syntax {
         )
     }
 
-    pub fn get_size(meta: Metadata) -> u64 {
+    fn type_of_file(meta: &Metadata) -> &'static str {
+        if meta.is_file() {
+            "."
+        } else if meta.is_dir() {
+            "d"
+        } else if meta.is_symlink() {
+            "l"
+        } else {
+            eprintln!("this shouldn't happen!");
+            ""
+        }
+    }
+
+    fn get_size(meta: &Metadata) -> u64 {
         meta.size()
+    }
+
+    pub fn get_long(meta: Metadata, name: &str) -> String {
+        let mut string = String::new();
+        string.push_str(type_of_file(&meta));
+        string.push_str(&*get_perms(&meta));
+        string.push_str(" ");
+        string.push_str(&*get_size(&meta).to_string());
+        string.push_str(" ");
+        string.push_str(&*get_owner(&meta).to_string());
+        string.push_str(" ");
+        string.push_str(&*get_date(&meta));
+        string.push_str(" ");
+        string.push_str(name);
+
+        string
     }
 }
