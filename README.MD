@@ -2,7 +2,7 @@
 
 | WIP       | Done | To Do |
 |-----------|------|-------|
-| chcon     | wc   |       |
+| chcon     | wc   |ls(prototype)|
 | chgrp     |      |       |
 | chown     |      |       |
 | chmod     |      |       |
@@ -13,7 +13,6 @@
 | dircolors |      |       |
 | install   |      |       |
 | ln        |      |       |
-| ls        |      |       |
 | mkdir     |      |       |
 | mkfifo    |      |       |
 | mknod     |      |       |
