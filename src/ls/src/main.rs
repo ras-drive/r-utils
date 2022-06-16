@@ -2,11 +2,6 @@ mod lib;
 mod syntax;
 mod file_list;
 
-use std::any::Any;
-use std::borrow::Borrow;
-use std::fmt::format;
-use std::path::{Path, PathBuf};
-
 use clap::{Arg, Command};
 
 use crate::lib::lib::search;
@@ -21,11 +16,16 @@ fn main() {
         .about("")
         .arg(Arg::new("dir_name")
             .required(false))
-        .arg(Arg::new("depth"))
+        .arg(Arg::new("depth")
+            .required(false))
+        .arg(Arg::new("long")
+            .required(false)
+            .short('l')
+            .long("long"))
         .get_matches();
 
-    let mut dir_name: String = String::new();
-    let mut depth: usize = 1;
+    let mut dir_name = String::new();
+    let mut depth = 1;
 
     if matches.is_present("depth") {
         depth = matches
@@ -42,19 +42,23 @@ fn main() {
             .parse()
             .unwrap();
 
-        search(Some(String::from(dir_name)), Some(depth));
-    } else {
-        search(None, None);
-
         let mut fl = FileList::new();
-        fl.add(String::from("test.txt"));
-        fl.add(String::from("test2.txt"));
+        fl.collect(search(Some(String::from(dir_name)), Some(depth)));
 
-        fl.print_long();
-        /*
-        let file_name = "test.txt";
-        let meta = syntax::syntax::get_metadata(file_name);
-        println!("{:?}", get_long(meta, file_name));
-         */
+        if matches.is_present("long") {
+            fl.print_long();
+        } else {
+            fl.print();
+        }
+
+    } else {
+        let mut fl = FileList::new();
+        fl.collect(search(None, Some(depth)));
+
+        if matches.is_present("long") {
+            fl.print_long();
+        } else {
+            fl.print();
+        }
     }
 }

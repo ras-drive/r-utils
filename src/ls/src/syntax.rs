@@ -2,7 +2,7 @@ pub mod syntax {
     use std::fs;
     use std::fs::Metadata;
     use std::os::unix::fs::{MetadataExt, PermissionsExt};
-    use std::time::{SystemTime, UNIX_EPOCH};
+    use std::time::{SystemTime};
 
 
     pub fn get_metadata(name: &str) -> Metadata {
@@ -12,7 +12,7 @@ pub mod syntax {
     fn get_perms(mut meta: &Metadata) -> String {
         let perms = meta.permissions().mode();
         let mut string_buf = String::new();
-        // for i in perms.to_string().chars() {
+
         for i in perms.to_string().chars() {
             match i.to_string().parse().unwrap() {
                 7 => string_buf.push_str(&*format!("{}{}{}", "r", "w", "x")), // "rwx"

@@ -10,12 +10,18 @@ pub mod file_list {
             Self { data: Vec::new() }
         }
 
-        pub fn add(&mut self, string: String) {
+        pub fn push(&mut self, string: String) {
             self.data.push(string);
         }
 
         pub fn pop(&mut self) -> Option<String> {
             self.data.pop()
+        }
+
+        pub fn collect(&mut self, mut vec: Vec<String>) -> () {
+            for i in vec {
+                self.push(i);
+            }
         }
 
         pub fn find(&mut self, string: &str) -> Option<String> {
@@ -27,9 +33,11 @@ pub mod file_list {
             None
         }
 
-        pub fn sort_by_alph_asc(&mut self) -> () {
+        /*
+        pub fn sort_by_alpha_asc(&mut self) -> () {
             self.data.sort()
         }
+         */
 
         pub fn get_data(self) -> Vec<String> {
             self.data
