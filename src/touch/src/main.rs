@@ -1,5 +1,8 @@
+mod lib;
+
 use std::io;
 use clap::{Arg, Command};
+use lib::run;
 
 fn main() -> Result<(), io::Error> {
     println!("This project is highly WIP!");
@@ -7,12 +10,9 @@ fn main() -> Result<(), io::Error> {
         .version("1.0")
         .author("Sarah Petkovic")
         .about("changes filetime to now, if file doesn't exist create an empty file with same name")
-        .arg(Arg::new("filename"))
+        .arg(Arg::new("filename").required(true))
         .get_matches();
 
-    run()
-}
-
-fn run() -> Result<(), io::Error> {
+    run(matches).expect("TODO: panic message");
     Ok(())
 }
