@@ -1,9 +1,6 @@
 use std::error::Error;
 use std::fs::File;
-use std::io;
 use std::path::Path;
-use std::path::Prefix::UNC;
-use std::time::SystemTime;
 use chrono::{NaiveDate, NaiveDateTime};
 use clap::ArgMatches;
 use crate::lib::arg_parser::Args;
@@ -11,10 +8,11 @@ use filetime::*;
 
 mod arg_parser;
 
+#[allow(unused_variables)]
 pub fn run(matches: ArgMatches) -> Result<(), Box<dyn Error>> {
     let args = Args::new(&matches)?;// .expect("error while parsing args");
     let file = get_file(args.filename)?;
-    let mut date = "";
+    let date = "";
 
     if matches.is_present("date") {
         let date = parse_date(&args)?;
@@ -44,15 +42,15 @@ pub fn get_file(filename: &str) -> Result<File, Box<dyn Error>>{
             if !Path::new(filename).exists() {
                 return Ok(File::create(filename).expect("error while creating file"));
             }
-            Err(panic!("file not found"))
+            Err("file not found")?
         }
     }
 }
 
 fn parse_date(args: &Args) -> Result<NaiveDateTime, Box<dyn Error>> {
-    let mut date_time;
-    let mut date = args.date.split(" ").nth(0).unwrap();
-    let mut time = args.date.split(" ").nth(1).unwrap();
+    let date_time;
+    let date = args.date.split(" ").nth(0).unwrap();
+    let time = args.date.split(" ").nth(1).unwrap();
 
     if date.contains("/") {
         date_time = NaiveDate::from_ymd( date.split("/").nth(0).expect("error parsing provided date").parse().expect("error parsing provided date"),

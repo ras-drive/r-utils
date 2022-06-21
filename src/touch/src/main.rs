@@ -1,9 +1,7 @@
 mod lib;
 
-use std::any::Any;
-use std::error::Error;
 use std::io;
-use clap::{Arg, ArgMatches, Command};
+use clap::{Arg, Command};
 use lib::run;
 
 fn main() -> Result<(), io::Error> {
