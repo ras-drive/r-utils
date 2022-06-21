@@ -11,40 +11,32 @@ mod arg_parser;
 #[allow(unused_variables)]
 pub fn run(matches: ArgMatches) -> Result<(), Box<dyn Error>> {
     let args = Args::new(&matches)?;// .expect("error while parsing args");
-    let file = get_file(args.filename)?;
     let date = "";
 
-    if matches.is_present("date") {
-        let date = parse_date(&args)?;
+    if Path::exists(Path::new(args.filename)) {
+        if matches.is_present("date") {
+            let date = parse_date(&args)?;
 
-        set_file_atime(args.filename, FileTime::from_unix_time(date.timestamp(), 0)).expect("TODO: panic message");
-        set_file_mtime(args.filename, FileTime::from_unix_time(date.timestamp(), 0)).expect("TODO: panic message");
+            set_file_atime(args.filename, FileTime::from_unix_time(date.timestamp(), 0)).expect("TODO: panic message");
+            set_file_mtime(args.filename, FileTime::from_unix_time(date.timestamp(), 0)).expect("TODO: panic message");
+        }
 
-        std::process::exit(1);
+        if matches.is_present("modify") {
+            set_file_mtime(args.filename, FileTime::now()).expect("TODO: panic message");
+        }
+
+        if matches.is_present("access") {
+            set_file_atime(args.filename, FileTime::now()).expect("TODO: panic message");
+        }
+    } else {
+        if args.create {
+            File::create(args.filename).expect("TODO: panic message");
+        } else {
+            std::process::exit(1);
+        }
     }
 
-
-    // create arg check
-    if args.create {
-        set_file_atime(args.filename, FileTime::now()).expect("TODO: panic message");
-        set_file_mtime(args.filename, FileTime::now()).expect("TODO: panic message");
-    }
-    // println!("{}", date.unwrap());
     Ok(())
-}
-
-pub fn get_file(filename: &str) -> Result<File, Box<dyn Error>>{
-    match File::open(Path::new(filename)) {
-        Ok(file) => {
-            Ok(file)
-        }
-        Err(_) => {
-            if !Path::new(filename).exists() {
-                return Ok(File::create(filename).expect("error while creating file"));
-            }
-            Err("file not found")?
-        }
-    }
 }
 
 fn parse_date(args: &Args) -> Result<NaiveDateTime, Box<dyn Error>> {
