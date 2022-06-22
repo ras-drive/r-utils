@@ -1,21 +1,20 @@
-use std::fs::{File, read_dir};
-use std::io;
+use std::error::Error;
 use std::path::{Path, PathBuf};
+use clap::ArgMatches;
+use walkdir::{DirEntry, WalkDir};
 
-pub fn search_dic(str: &str, canonical: bool) -> Vec<PathBuf> {
+pub fn search(matches: ArgMatches, recursive: bool) -> Result<Vec<DirEntry>, Box<dyn Error>>{
+    let mut max_depth = 1;
+    if recursive {
+        max_depth = usize::MAX;
+    }
+
     let mut vec = vec![];
 
-    match read_dir(Path::new(str)) {
-        Ok(mut data) => {
-            for i in data {
-                if canonical {
-                    vec.push(i.unwrap().path().canonicalize().unwrap());
-                } else {
-                    vec.push(i.unwrap().path());
-                }
-            }
-        }
-        Err(_) => {}
+    for entry in WalkDir::new("./").min_depth(1).max_depth(max_depth).into_iter().filter_map(|e| e.ok()) {
+        // println!("{}", entry.path().canonicalize().unwrap().display());
+        vec.push(entry);
     }
-    vec
+
+    Ok(vec)
 }
