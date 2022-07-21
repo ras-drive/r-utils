@@ -1,37 +1,39 @@
+mod parser;
+mod token;
+
+use std::any::Any;
+use std::borrow::Borrow;
+use std::collections::HashMap;
 use std::error::Error;
+use std::fs::read_to_string;
+use std::env::set_var;
+use std::fmt;
 
-pub struct Envs<'a> {
-    vec: Vec<&'a str>
-}
+use logos::{Logos, Lexer};
+use crate::lib::parser::Parser;
+use crate::lib::token::Token;
 
-impl<'a> Envs<'a> {
-    pub fn new() -> Envs<'a> {
-        Envs { vec: Vec::new() }
-    }
 
-    pub fn collect(&mut self, vec: Vec<&'a str>) {
-        for i in vec {
-            self.vec.push(i);
-        }
-    }
+pub fn setup() -> Result<(), Box<dyn Error>> {
+    match read_to_string(".shellrc") {
+        Ok(data) => {
+            let lex: Lexer<Token> = Token::lexer(data.as_str());
+            let mut token_list = vec![];
 
-    pub fn push(&mut self, str: &'a str) -> Result<(), Box<dyn Error>> {
-        for i in &self.vec {
-            if &str == i {
-                Err(format!("env item: {} already found", i))?
+            for i in lex {
+                if i != Token::Error {
+                    token_list.push(i);
+                }
             }
-        }
-        self.vec.push(str);
-        Ok(())
-    }
 
-    pub fn remove(&mut self, str: &'a str) -> Result<&'a str, Box<dyn Error>> {
-        // flag to check if it is in vector
-        for i in 0..self.vec.capacity() {
-            if self.vec[i] == str {
-                return Ok(self.vec.remove(i));
-            }
+
+            let mut parser = Parser::new(token_list);
+            parser.run().expect("TODO: Error message");
+
+            Ok(())
         }
-        Err(format!("element: {} not found in vector", str))?
+        Err(_) => {
+            Err(Box::from("Error: config file not found"))
+        }
     }
 }
