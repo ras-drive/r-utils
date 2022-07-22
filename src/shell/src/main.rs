@@ -10,7 +10,7 @@ use std::process::{Child, Command, Stdio};
 use crate::lib::setup;
 
 fn main() {
-    setup().expect("Error on shell setup");
+    setup(".shellrc").expect("Error on shell setup");
 
     loop {
         print!("> ");
