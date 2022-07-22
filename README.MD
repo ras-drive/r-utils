@@ -1,4 +1,4 @@
-## What is the purpos of this repo?
+## What is the purpose of this repo?
 I'm mostly writing this as practice to get more used
 to writing rust code but I also thought it was a fun
 way to get more into OS development by starting the
