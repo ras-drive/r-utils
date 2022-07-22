@@ -6,8 +6,9 @@ use std::borrow::Borrow;
 use std::collections::HashMap;
 use std::error::Error;
 use std::fs::read_to_string;
-use std::env::set_var;
+use std::env::{set_var, Vars};
 use std::fmt;
+use std::process::Stdio;
 
 use logos::{Logos, Lexer};
 use crate::lib::parser::Parser;
