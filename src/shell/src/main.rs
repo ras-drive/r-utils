@@ -4,10 +4,12 @@ use std::env;
 use std::io::{stdin, stdout, Write};
 use std::path::Path;
 use std::process::{Child, Command, Stdio};
+
 use crate::lib::setup;
 
 fn main() {
-    setup().expect("Error on shell setup");
+    setup(".shellrc").expect("Error on shell setup");
+
     loop {
         print!("> ");
         stdout().flush().expect("TODO: panic message");
@@ -15,8 +17,19 @@ fn main() {
         let mut input = String::new();
         stdin().read_line(&mut input).unwrap();
 
+        let mut san_input = String::new();
+        for i in input.split(" ") {
+            if i.contains("$") {
+                san_input.push_str(subst::substitute(i, &subst::Env).unwrap().as_str());
+                san_input.push_str(" ");
+            } else {
+                san_input.push_str(i);
+                san_input.push_str(" ");
+            }
+        }
+
         // must be peekable so we know when we are on the last command
-        let mut commands = input.trim().split(" | ").peekable();
+        let mut commands = san_input.trim().split(" | ").peekable();
         let mut previous_command = None;
 
         while let Some(command) = commands.next() {

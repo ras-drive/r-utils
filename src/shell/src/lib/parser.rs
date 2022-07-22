@@ -1,6 +1,4 @@
-use std::any::Any;
 use std::error::Error;
-use std::fmt::Display;
 use crate::lib::Token;
 
 pub struct Parser<'a> {
@@ -16,7 +14,7 @@ impl<'a> Parser<'a> {
 
     pub fn run(&mut self) -> Result<(), Box<dyn Error>> {
             let count = 0;
-            let mut iter = self.data.iter().clone();
+            let iter = self.data.iter().clone();
             for i in iter.clone() {
                 // export parser handle
                 if i == &Token::Export {
