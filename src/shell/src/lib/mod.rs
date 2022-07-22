@@ -1,14 +1,8 @@
 mod parser;
 mod token;
 
-use std::any::Any;
-use std::borrow::Borrow;
-use std::collections::HashMap;
 use std::error::Error;
 use std::fs::read_to_string;
-use std::env::{set_var, Vars};
-use std::fmt;
-use std::process::Stdio;
 
 use logos::{Logos, Lexer};
 use crate::lib::parser::Parser;
@@ -41,12 +35,12 @@ pub fn setup(config_name: &str) -> Result<(), Box<dyn Error>> {
 
 #[cfg(test)]
 mod tests {
-    use std::fs::{File, OpenOptions, remove_file};
+    use std::fs::{File, remove_file};
     use std::io::Write;
     use super::*;
     #[test]
     fn test_simple_script() {
-        let mut content = String::from("export TEST=\"test\"");
+        let content = String::from("export TEST=\"test\"");
         let mut file = File::create(".shellrc_temp").unwrap();
         file.write(content.as_bytes()).expect("error writing test .shellrc config");
         setup(".shellrc_temp").unwrap();

@@ -1,8 +1,6 @@
 pub mod lib;
 
-use std::collections::HashMap;
 use std::env;
-use std::env::VarError;
 use std::io::{stdin, stdout, Write};
 use std::path::Path;
 use std::process::{Child, Command, Stdio};
@@ -20,7 +18,7 @@ fn main() {
         stdin().read_line(&mut input).unwrap();
 
         let mut san_input = String::new();
-        for mut i in input.split(" ") {
+        for i in input.split(" ") {
             if i.contains("$") {
                 san_input.push_str(subst::substitute(i, &subst::Env).unwrap().as_str());
                 san_input.push_str(" ");
