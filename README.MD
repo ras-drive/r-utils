@@ -13,6 +13,11 @@ replacing parts of my system with these and maybe even
 one day have my own custom Linux userspace to pair with
 the kernel(I know this is obviously a massive ways off)!
 
+## Contacts
+If you for whatever reason need/want to contact me my
+Discord handle is Sarah P#0227 and will respond relativly
+quick
+
 ## Utilities
 
 | WIP       | Done  | To Do                        |
