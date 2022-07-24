@@ -5,7 +5,7 @@ use logos::Logos;
 pub enum Token<'a> {
     // Tokens can be literal strings, of any length.
     #[token("export")]
-    Export,
+    Keyword(&'a str),
 
     // Or regular expressions.
     #[regex("[a-zA-Z.=\"]+")]
@@ -18,6 +18,10 @@ pub enum Token<'a> {
     // or any other matches we wish to skip.
     #[regex(r"[ \t\n\f]+", logos::skip)]
     Error,
+}
+
+pub enum Keyword {
+    Export,
 }
 
 impl<'a> Display for Token<'a> {

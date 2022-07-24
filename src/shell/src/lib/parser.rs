@@ -1,5 +1,6 @@
 use std::error::Error;
 use crate::lib::Token;
+use crate::lib::token::Keyword;
 
 pub struct Parser<'a> {
     data: Vec<Token<'a>>
@@ -17,7 +18,7 @@ impl<'a> Parser<'a> {
             let iter = self.data.iter().clone();
             for i in iter.clone() {
                 // export parser handle
-                if i == &Token::Export {
+                if i.to_string() == "export" {
                     let mut token = self.data[count + 1].to_string();
                     token = token.strip_prefix("Text(\"").unwrap().to_string();
                     token = token.strip_suffix("\")").unwrap().to_string();
