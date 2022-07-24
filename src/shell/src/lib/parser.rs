@@ -24,12 +24,12 @@ impl<'a> Parser<'a> {
                     token = token.strip_suffix("\")").unwrap().to_string();
                     token = token.replace("\\\"", "\"");
 
-                    let var = token.rsplit_once("=").unwrap().0;
+                    let key = token.rsplit_once("=").unwrap().0;
                     let text = token.rsplit_once("=").unwrap().1
                         .strip_prefix("\"").unwrap()
                         .strip_suffix("\"").unwrap();
 
-                    std::env::set_var(var, text);
+                    std::env::set_var(key, text);
                 }
 
             }

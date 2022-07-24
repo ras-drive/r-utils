@@ -4,7 +4,7 @@ use std::env;
 use std::io::{stdin, stdout, Write};
 use std::path::Path;
 use std::process::{Child, Command, Stdio};
-use subst::Error;
+use subst::substitute;
 
 use crate::lib::setup;
 
@@ -21,16 +21,18 @@ fn main() {
         let mut san_input = String::new();
         for i in input.split(" ") {
             if i.contains("$") {
-                match subst::substitute(i, &subst::Env) {
+
+                match substitute(i, &subst::Env) {
                     Ok(sub) => {
                         san_input.push_str(sub.as_str());
                         san_input.push_str(" ");
                     }
+
                     Err(err) => {
                         println!("{}", err )
                     }
                 }
-                // san_input.push_str(subst::substitute(i, &subst::Env).unwrap().as_str());
+
             } else {
                 san_input.push_str(i);
                 san_input.push_str(" ");
