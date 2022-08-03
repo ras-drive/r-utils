@@ -24,7 +24,7 @@ quick
 |-----------|-------|------------------------------|
 | chcon     | wc    | ls (prototype)               |
 | chgrp     | touch | shell (very basic prototype) |
-| chown     |       |                              |
+| chown     |       | md5sum (only prints md5sums) |
 | chmod     |       |                              |
 | cp        |       |                              |
 | dd        |       |                              |
@@ -57,7 +57,6 @@ quick
 | fold      |       |                              |
 | head      |       |                              |
 | join      |       |                              |
-| md5sum    |       |                              |
 | nl        |       |                              |
 | numfmt    |       |                              |
 | od        |       |                              |
