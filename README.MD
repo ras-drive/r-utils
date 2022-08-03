@@ -15,7 +15,7 @@ the kernel(I know this is obviously a massive ways off)!
 
 ## Contacts
 If you for whatever reason need/want to contact me my
-Discord handle is Sarah P#0227 and will respond relativly
+Discord handle is Sarah P#0227 and will respond relatively
 quick
 
 ## Utilities
