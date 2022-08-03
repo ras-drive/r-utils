@@ -4,4 +4,5 @@ members = [
     "src/wc",
     "src/touch",
     "src/shell",
+    "src/md5sum",
 ]
