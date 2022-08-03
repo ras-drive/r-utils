@@ -1,12 +1,12 @@
-use std::error::Error;
 use clap::ArgMatches;
+use std::error::Error;
 
 pub struct Args<'a> {
     pub filename: &'a str,
     pub create: bool,
     pub date: &'a str,
     pub modify: bool,
-    pub access: bool
+    pub access: bool,
 }
 
 impl<'b> Args<'b> {
@@ -33,15 +33,14 @@ impl<'b> Args<'b> {
         }
 
         if matches.is_present("filename") {
-            let filename = matches.value_of("filename")
-                .unwrap();
+            let filename = matches.value_of("filename").unwrap();
             return Ok(Args {
                 filename,
                 create,
                 date,
                 modify,
-                access
-            })
+                access,
+            });
         }
         Err("file not provided")?
     }

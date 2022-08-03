@@ -1,8 +1,8 @@
 mod lib;
 
-use std::io;
 use clap::{Arg, Command};
 use lib::run;
+use std::io;
 
 fn main() -> Result<(), io::Error> {
     let matches = Command::new("touch")
@@ -34,4 +34,3 @@ fn main() -> Result<(), io::Error> {
     run(matches).expect("TODO: panic message");
     Ok(())
 }
-
