@@ -24,7 +24,7 @@ quick
 |-----------|-------|------------------------------|
 | chcon     | wc    | ls (prototype)               |
 | chgrp     | touch | shell (very basic prototype) |
-| chown     |       | md5sum (only prints md5sums) |
+| chown     | yes   | md5sum (only prints md5sums) |
 | chmod     |       |                              |
 | cp        |       |                              |
 | dd        |       |                              |
@@ -115,5 +115,4 @@ quick
 | Uptime    |       |                              |
 | who       |       |                              |
 | whoami    |       |                              |
-| yes       |       |                              |
 
