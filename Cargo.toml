@@ -6,4 +6,5 @@ members = [
     "src/shell",
     "src/md5sum",
     "src/yes",
+    "src/ls",
 ]
