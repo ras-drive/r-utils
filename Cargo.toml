@@ -5,4 +5,5 @@ members = [
     "src/touch",
     "src/shell",
     "src/md5sum",
+    "src/yes",
 ]
