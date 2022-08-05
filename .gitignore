@@ -1,4 +1,5 @@
 .idea
+*.iml
 
 /src/wc/target/
 /target/
