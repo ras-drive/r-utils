@@ -29,7 +29,6 @@ quick
 | cp        |       |                              |
 | dd        |       |                              |
 | df        |       |                              |
-| ls        |       |                              |
 | dircolors |       |                              |
 | install   |       |                              |
 | ln        |       |                              |
