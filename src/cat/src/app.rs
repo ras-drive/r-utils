@@ -49,10 +49,10 @@ impl App {
         // - https://docs.rs/tui/0.16.0/tui/widgets/index.html
         // - https://github.com/fdehau/tui-rs/tree/v0.16.0/examples
         frame.render_widget(
-            Paragraph::new(format!("{}\n{}", self.file_name.as_str(), self.data))
+            Paragraph::new(format!("{}\n\n{}", self.file_name.as_str(), self.data))
                 .block(Block::default().borders(Borders::ALL))
                 .style(Style::default().fg(Color::White).bg(Color::Black))
-                .alignment(Alignment::Center),
+                .alignment(Alignment::Left),
             frame.size(),
         )
     }
