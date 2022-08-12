@@ -155,8 +155,8 @@ mod tests {
 
     #[test]
     fn read_byte_test() {
-        let mut file_ref = fs::File::create("test2.txt")
-            .expect("test: #2(read_byte_test), failed on file write");
+        let mut file_ref =
+            fs::File::create("test2.txt").expect("test: #2(read_byte_test), failed on file write");
         file_ref
             .write_all("test\n".as_bytes())
             .expect("test: #2(read_byte_test), failed on file write");
@@ -167,8 +167,8 @@ mod tests {
 
     #[test]
     fn read_line_test() {
-        let mut file_ref = fs::File::create("test3.txt")
-            .expect("test: #3(read_line_test), failed on file write");
+        let mut file_ref =
+            fs::File::create("test3.txt").expect("test: #3(read_line_test), failed on file write");
         file_ref
             .write_all("test\n test test\n\n\n  test test".as_bytes())
             .expect("test: #3(read_line_test), failed on file write");
@@ -179,8 +179,8 @@ mod tests {
 
     #[test]
     fn read_word_test() {
-        let mut file_ref = fs::File::create("test4.txt")
-            .expect("test: #4(read_word_test), failed on file write");
+        let mut file_ref =
+            fs::File::create("test4.txt").expect("test: #4(read_word_test), failed on file write");
         file_ref
             .write_all("test testies test".as_bytes())
             .expect("test: #4(read_word_test), failed on file write");
@@ -191,8 +191,8 @@ mod tests {
 
     #[test]
     fn read_char_test() {
-        let mut file_ref = fs::File::create("test5.txt")
-            .expect("test: #5(read_char_test), failed on file write");
+        let mut file_ref =
+            fs::File::create("test5.txt").expect("test: #5(read_char_test), failed on file write");
         file_ref
             .write_all("test test testing".as_bytes())
             .expect("test: #5(read_char_test), failed on file write");

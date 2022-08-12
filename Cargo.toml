@@ -7,4 +7,5 @@ members = [
     "src/md5sum",
     "src/yes",
     "src/ls",
+    "src/cat"
 ]

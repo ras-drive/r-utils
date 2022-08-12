@@ -1,6 +1,6 @@
+use clap::ArgMatches;
+use md5::{compute, Digest};
 use std::io::BufRead;
-use clap::{ArgMatches};
-use md5::{Digest, compute};
 
 pub fn run(matches: ArgMatches) {
     let filename = matches.value_of("filename").unwrap_or("-");
@@ -14,13 +14,11 @@ pub fn run(matches: ArgMatches) {
         }
     }
     println!("{:?} {}", checksum(&input), filename);
-
 }
 
 fn checksum(input: &String) -> Digest {
     compute(&input.as_bytes())
 }
-
 
 #[cfg(test)]
 mod tests {
