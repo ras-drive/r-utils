@@ -31,9 +31,10 @@ impl App {
         match file_name {
             None => { Self::default() }
             Some(file_name) => {
+                let data = std::fs::read_to_string(&file_name).unwrap();
                 Self { running: true,
                     file_name,
-                    data: "".to_string() }
+                    data }
             }
         }
     }
