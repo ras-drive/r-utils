@@ -4,7 +4,7 @@ use tui::backend::Backend;
 use tui::layout::Alignment;
 use tui::style::{Color, Style};
 use tui::terminal::Frame;
-use tui::widgets::{Block, Borders, Paragraph};
+use tui::widgets::{Block, Borders, Paragraph, Widget};
 
 /// Application result type.
 pub type AppResult<T> = std::result::Result<T, Box<dyn error::Error>>;
@@ -14,19 +14,28 @@ pub type AppResult<T> = std::result::Result<T, Box<dyn error::Error>>;
 pub struct App {
     /// Is the application running?
     pub running: bool,
-    pub file_name: String
+    pub file_name: String,
+    pub data: String,
 }
 
 impl Default for App {
     fn default() -> Self {
-        Self { running: true, file_name: "STDIN".to_string() }
+        let data = std::io::stdin().lock().lines().next().unwrap().unwrap();
+        Self { running: true, file_name: "STDIN".to_string(), data }
     }
 }
 
 impl App {
     /// Constructs a new instance of [`App`].
-    pub fn new() -> Self {
-        Self::default()
+    pub fn new(file_name: Option<String>) -> Self {
+        match file_name {
+            None => { Self::default() }
+            Some(file_name) => {
+                Self { running: true,
+                    file_name,
+                    data: "".to_string() }
+            }
+        }
     }
 
     /// Handles the tick event of the terminal.
@@ -39,7 +48,7 @@ impl App {
         // - https://docs.rs/tui/0.16.0/tui/widgets/index.html
         // - https://github.com/fdehau/tui-rs/tree/v0.16.0/examples
         frame.render_widget(
-            Paragraph::new(self.file_name.as_str())
+            Paragraph::new(format!("{}\n{}", self.file_name.as_str(), self.data))
                 .block(Block::default().borders(Borders::ALL))
                 .style(Style::default().fg(Color::White).bg(Color::Black))
                 .alignment(Alignment::Center),

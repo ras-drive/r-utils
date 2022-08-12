@@ -1,4 +1,5 @@
 use std::io;
+use clap::{Arg, Command};
 use tui::backend::CrosstermBackend;
 use tui::Terminal;
 use cat::app::{App, AppResult};
@@ -7,8 +8,21 @@ use cat::handler::handle_key_events;
 use cat::tui::Tui;
 
 fn main() -> AppResult<()> {
+    // Get Clap arguments.
+    let matches = Command::new("wc")
+        .version("1.0")
+        .author("Sarah Petkovic")
+        .about("print newline, word, and byte counts for each file")
+        .arg(Arg::new("filename").required(false))
+        .get_matches();
+
     // Create an application.
-    let mut app = App::new();
+    let mut app: App;
+    if matches.is_present("filename") {
+        app = App::new(Some(matches.value_of("filename").unwrap().to_string()));
+    } else {
+        app = App::default();
+    }
 
     // Initialize the terminal user interface.
     let backend = CrosstermBackend::new(io::stderr());

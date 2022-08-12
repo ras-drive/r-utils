@@ -50,6 +50,7 @@ checksum = "df8670b8c7b9dae1793364eafadf7239c40d669904660c5960d74cfd80b46a53"
 name = "cat"
 version = "0.1.0"
 dependencies = [
+ "clap",
  "crossterm 0.21.0",
  "tui",
 ]

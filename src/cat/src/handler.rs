@@ -8,7 +8,7 @@ pub fn handle_key_events(key_event: KeyEvent, app: &mut App) -> AppResult<()> {
         KeyCode::Esc => {
             app.running = false;
         }
-        // exit application on q
+        // exit application on Q
         KeyCode::Char('q') | KeyCode::Char('Q') => {
                 app.running = false;
         }
