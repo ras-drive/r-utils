@@ -1,5 +1,6 @@
 [package]
 name = "arch"
+description = "print machine hardware name"
 version = "0.1.0"
 edition = "2021"
 
