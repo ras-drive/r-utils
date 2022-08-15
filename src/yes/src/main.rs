@@ -18,15 +18,14 @@ fn main() {
         .arg(clap::Arg::new("string").required(false))
         .get_matches();
 
-    let data;
-    match matches.is_present("string") {
+    let data = match matches.is_present("string") {
         true => {
-            data = matches.value_of("string").unwrap().to_string();
+            matches.value_of("string").unwrap().to_string()
         }
         false => {
-            data = String::from("y");
+            String::from("y")
         }
-    }
+    };
 
     loop {
         println!("{}", data);
