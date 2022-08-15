@@ -25,14 +25,13 @@ quick
 | chcon     | wc    | ls (prototype)               |
 | chgrp     | touch | shell (very basic prototype) |
 | chown     | yes   | md5sum (only prints md5sums) |
-| chmod     | arch  |                              |
+| chmod     | arch  | mkdir (prototype)            |
 | cp        |       |                              |
 | dd        |       |                              |
 | df        |       |                              |
 | dircolors |       |                              |
 | install   |       |                              |
 | ln        |       |                              |
-| mkdir     |       |                              |
 | mkfifo    |       |                              |
 | mknod     |       |                              |
 | mktemp    |       |                              |
