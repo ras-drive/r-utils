@@ -30,12 +30,10 @@ pub fn run(matches: ArgMatches) -> Result<(), Box<dyn Error>> {
         if matches.is_present("access") {
             set_file_atime(args.filename, FileTime::now()).expect("TODO: panic message");
         }
+    } else if args.create {
+        File::create(args.filename).expect("TODO: panic message");
     } else {
-        if args.create {
-            File::create(args.filename).expect("TODO: panic message");
-        } else {
-            std::process::exit(1);
-        }
+        std::process::exit(1);
     }
 
     Ok(())
@@ -43,81 +41,77 @@ pub fn run(matches: ArgMatches) -> Result<(), Box<dyn Error>> {
 
 fn parse_date(args: &Args) -> Result<NaiveDateTime, Box<dyn Error>> {
     let date_time;
-    let date = args.date.split(" ").nth(0).unwrap();
-    let time = args.date.split(" ").nth(1).unwrap();
+    let date = args.date.split(' ').next().unwrap();
+    let time = args.date.split(' ').nth(1).unwrap();
 
-    if date.contains("/") {
+    if date.contains('/') {
         date_time = NaiveDate::from_ymd(
-            date.split("/")
-                .nth(0)
+            date.split('/').next()
                 .expect("error parsing provided date")
                 .parse()
                 .expect("error parsing provided date"),
-            date.split("/")
+            date.split('/')
                 .nth(1)
                 .expect("error parsing provided date")
                 .parse()
                 .expect("error parsing provided date"),
-            date.split("/")
+            date.split('/')
                 .nth(2)
                 .expect("error parsing provided date")
                 .parse()
                 .expect("error parsing provided date"),
         )
         .and_hms(
-            time.split(":")
-                .nth(0)
+            time.split(':').next()
                 .expect("error parsing provided date")
                 .parse()
                 .expect("error parsing provided date"),
-            time.split(":")
+            time.split(':')
                 .nth(1)
                 .expect("error parsing provided date")
                 .parse()
                 .expect("error parsing provided date"),
-            time.split(":")
+            time.split(':')
                 .nth(2)
                 .expect("error parsing provided date")
                 .parse()
                 .expect("error parsing provided date"),
         );
-        return Ok(date_time);
-    } else if date.contains("-") {
+        Ok(date_time)
+    } else if date.contains('-') {
         date_time = NaiveDate::from_ymd(
-            date.split("-")
-                .nth(0)
+            date.split('-').next()
                 .expect("error parsing provided date")
                 .parse()
                 .expect("error parsing provided date"),
-            date.split("-")
+            date.split('-')
                 .nth(1)
                 .expect("error parsing provided date")
                 .parse()
                 .expect("error parsing provided date"),
-            date.split("-")
+            date.split('-')
                 .nth(2)
                 .expect("error parsing provided date")
                 .parse()
                 .expect("error parsing provided date"),
         )
         .and_hms(
-            time.split(":")
-                .nth(0)
+            time.split(':').next()
                 .expect("error parsing provided date")
                 .parse()
                 .expect("error parsing provided date"),
-            time.split(":")
+            time.split(':')
                 .nth(1)
                 .expect("error parsing provided date")
                 .parse()
                 .expect("error parsing provided date"),
-            time.split(":")
+            time.split(':')
                 .nth(2)
                 .expect("error parsing provided date")
                 .parse()
                 .expect("error parsing provided date"),
         );
-        return Ok(date_time);
+        Ok(date_time)
     } else {
         Err("invalid date format")?
     }

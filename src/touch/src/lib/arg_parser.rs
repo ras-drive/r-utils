@@ -10,7 +10,7 @@ pub struct Args<'a> {
 }
 
 impl<'b> Args<'b> {
-    pub fn new<'a>(matches: &'b ArgMatches) -> Result<Args<'b>, Box<dyn Error>> {
+    pub fn new(matches: &'b ArgMatches) -> Result<Args<'b>, Box<dyn Error>> {
         let mut create = true;
         let mut date = "";
         let mut modify = false;
