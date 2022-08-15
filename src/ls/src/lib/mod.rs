@@ -2,12 +2,12 @@ mod arg_parser;
 mod file_list;
 mod syntax;
 
-use clap::{Arg, ArgMatches, Command};
+use clap:: ArgMatches;
 use walkdir::WalkDir;
 
 use arg_parser::Args; // arg_parser::arg_parser::Args;
 use file_list::FileList; // file_list::file_list::FileList;
-use syntax::{get_long, get_metadata}; // {get_long, get_metadata};
+// use syntax::{get_long, get_metadata};
 
 pub fn search(dir_name: Option<String>, depth: Option<usize>) -> Vec<String> {
     let mut vec = vec![];
@@ -23,7 +23,7 @@ pub fn search(dir_name: Option<String>, depth: Option<usize>) -> Vec<String> {
         Some(name) => {
             match depth {
                 Some(d) => {
-                    for entry in WalkDir::new(name.to_string())
+                    for entry in WalkDir::new(name)
                         .max_depth(d)
                         .into_iter()
                         .filter_map(|e| e.ok())
@@ -42,7 +42,7 @@ pub fn search(dir_name: Option<String>, depth: Option<usize>) -> Vec<String> {
                     }
                 }
                 None => {
-                    for entry in WalkDir::new(name.to_string())
+                    for entry in WalkDir::new(name)
                         .max_depth(1)
                         .into_iter()
                         .filter_map(|e| e.ok())
@@ -57,8 +57,8 @@ pub fn search(dir_name: Option<String>, depth: Option<usize>) -> Vec<String> {
     }
 }
 
-pub fn run(matches: ArgMatches) -> () {
-    let mut args = Args::new(matches);
+pub fn run(matches: ArgMatches) {
+    let args = Args::new(matches);
     let mut fl = FileList::new();
     fl.collect(search(Some(args.dir_name), Some(args.depth)));
 

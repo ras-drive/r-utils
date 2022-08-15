@@ -1,5 +1,4 @@
 
-use std::fmt::format;
 use std::fs;
 use std::fs::Metadata;
 use std::os::unix::fs::{MetadataExt, PermissionsExt};
@@ -9,19 +8,19 @@ pub fn get_metadata(name: &str) -> Metadata {
     fs::metadata(&name).unwrap()
 }
 
-fn get_perms(mut meta: &Metadata) -> String {
+fn get_perms(meta: &Metadata) -> String {
     let perms = meta.permissions().mode();
     let mut string_buf = String::new();
 
     for i in perms.to_string().chars() {
         match i.to_string().parse().unwrap() {
-            7 => string_buf.push_str(&*format!("{}{}{}", "r", "w", "x")), // "rwx"
-            6 => string_buf.push_str(&*format!("{}{}{}", "r", "w", "-")), // "rw-"
-            5 => string_buf.push_str(&*format!("{}{}{}", "r", "-", "x")), // "r-x"
-            4 => string_buf.push_str(&*format!("{}{}{}", "r", "-", "-")), // "r--"
-            3 => string_buf.push_str(&*format!("{}{}{}", "-", "w", "x")), // "-wx"
-            2 => string_buf.push_str(&*format!("{}{}{}", "-", "w", "-")), // "-w-"
-            1 => string_buf.push_str(&*format!("{}{}{}", "-", "-", "x")), // "--x"
+            7 => string_buf.push_str(&format!("{}{}{}", "r", "w", "x")), // "rwx"
+            6 => string_buf.push_str(&format!("{}{}{}", "r", "w", "-")), // "rw-"
+            5 => string_buf.push_str(&format!("{}{}{}", "r", "-", "x")), // "r-x"
+            4 => string_buf.push_str(&format!("{}{}{}", "r", "-", "-")), // "r--"
+            3 => string_buf.push_str(&format!("{}{}{}", "-", "w", "x")), // "-wx"
+            2 => string_buf.push_str(&format!("{}{}{}", "-", "w", "-")), // "-w-"
+            1 => string_buf.push_str(&format!("{}{}{}", "-", "-", "x")), // "--x"
             _ => break,
         }
     }
@@ -101,5 +100,4 @@ pub fn get_long(meta: Metadata, name: &str) -> String {
         &*get_date(&meta),
         name
     )
-    .to_string()
 }

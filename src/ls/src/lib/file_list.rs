@@ -13,16 +13,18 @@ impl FileList {
         self.data.push(string);
     }
 
+    #[allow(dead_code)]
     pub fn pop(&mut self) -> Option<String> {
         self.data.pop()
     }
 
-    pub fn collect(&mut self, mut vec: Vec<String>) -> () {
+    pub fn collect(&mut self, vec: Vec<String>) {
         for i in vec {
             self.push(i);
         }
     }
 
+    #[allow(dead_code)]
     pub fn find(&mut self, string: &str) -> Option<String> {
         for i in &self.data {
             if i.contains(string) {
@@ -38,17 +40,18 @@ impl FileList {
     }
      */
 
+    #[allow(dead_code)]
     pub fn get_data(self) -> Vec<String> {
         self.data
     }
 
-    pub fn print(&self) -> () {
+    pub fn print(&self) {
         for i in &self.data {
             println!("{}", i);
         }
     }
 
-    pub fn print_long(&self) -> () {
+    pub fn print_long(&self) {
         for i in &self.data {
             let metadata = get_metadata(i.as_str());
             let contents = get_long(metadata, i.as_str());

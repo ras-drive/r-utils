@@ -3,7 +3,7 @@ mod lib;
 use clap::{Arg, Command};
 
 use crate::lib::run;
-use crate::lib::search;
+// use crate::lib::search;
 
 fn main() {
     println!("WARNING: THIS PROGRAM IS MAJORLY WIP!");
