@@ -3,6 +3,13 @@ use std::path::Path;
 use std::io;
 use std::fs;
 
+// TODO: add the rest of the mkdir arguments
+// -m --mode: set file mode (as in chmod), not a=rwx - umask,
+// p --parents: no error if existing, make parent directories as needed, with their file modes unaffected by any -m option,
+// -Z: set SELinux security context of each created directory to the default type
+// --context: like -Z, or if CTX is specified then set the SELinux or SMACK security context to CTX
+
+
 fn main() {
     let matches = Command::new("mkdir")
         .version("0.1.0")
