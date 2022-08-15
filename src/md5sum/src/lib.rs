@@ -4,15 +4,14 @@ use md5::{Digest, compute};
 
 pub fn run(matches: ArgMatches) {
     let filename = matches.value_of("filename").unwrap_or("-");
-    let input;
-    match matches.is_present("filename") {
+    let input = match matches.is_present("filename") {
         true => {
-            input = matches.value_of("filename").unwrap().to_string();
+            matches.value_of("filename").unwrap().to_string()
         }
         false => {
-            input = std::io::stdin().lock().lines().next().unwrap().unwrap();
+            std::io::stdin().lock().lines().next().unwrap().unwrap()
         }
-    }
+    };
     println!("{:?} {}", checksum(&input), filename);
 
 }
