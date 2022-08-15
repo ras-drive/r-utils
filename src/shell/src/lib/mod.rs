@@ -38,7 +38,7 @@ mod tests {
     fn test_simple_script() {
         let content = String::from("export TEST=\"test\"");
         let mut file = File::create(".shellrc_temp").unwrap();
-        file.write(content.as_bytes())
+        file.write_all(content.as_bytes())
             .expect("error writing test .shellrc config");
         setup(".shellrc_temp").unwrap();
 
