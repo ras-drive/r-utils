@@ -72,13 +72,13 @@ pub fn run() {
             .unwrap();
 
         if matches.is_present("byte_count") {
-            output.push_str(&*format!("{} ", read_byte_count(filename.as_str())));
+            output.push_str(&format!("{} ", read_byte_count(filename.as_str())));
         } else if matches.is_present("char_count") {
-            output.push_str(&*format!("{} ", read_char_count(filename.as_str())));
+            output.push_str(&format!("{} ", read_char_count(filename.as_str())));
         } else if matches.is_present("word_count") {
-            output.push_str(&*format!("{} ", read_word_count(filename.as_str())));
+            output.push_str(&format!("{} ", read_word_count(filename.as_str())));
         } else if matches.is_present("line_count") {
-            output.push_str(&*format!("{} ", read_line_count(filename.as_str())));
+            output.push_str(&format!("{} ", read_line_count(filename.as_str())));
         } else {
             // default output
             output = format!(
@@ -89,7 +89,7 @@ pub fn run() {
             );
         }
 
-        output.push_str(&*filename);
+        output.push_str(&filename);
         println!("{}", output);
     } else {
         loop {
@@ -111,7 +111,7 @@ pub fn read_line_count(path: &str) -> usize {
 pub fn read_word_count(path: &str) -> usize {
     let re = Regex::new("").unwrap();
     let mut count = 0;
-    for _ in read_file(path).unwrap().split(" ") {
+    for _ in read_file(path).unwrap().split(' ') {
         if re.is_match("[a-zA-Z0-9]+([-_][a-zA-Z0-9]+)*") {
             count += 1
         }
