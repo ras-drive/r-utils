@@ -18,13 +18,13 @@ fn main() {
         stdin().read_line(&mut input).unwrap();
 
         let mut san_input = String::new();
-        for i in input.split(" ") {
-            if i.contains("$") {
+        for i in input.split(' ') {
+            if i.contains('$') {
                 san_input.push_str(subst::substitute(i, &subst::Env).unwrap().as_str());
-                san_input.push_str(" ");
+                san_input.push(' ');
             } else {
                 san_input.push_str(i);
-                san_input.push_str(" ");
+                san_input.push(' ');
             }
         }
 
@@ -33,7 +33,7 @@ fn main() {
         let mut previous_command = None;
 
         while let Some(command) = commands.next() {
-            let mut parts = command.trim().split_whitespace();
+            let mut parts = command.split_whitespace();
             // let command = parts.next().unwrap();
             let command = match parts.next() {
                 Some(data) => data,

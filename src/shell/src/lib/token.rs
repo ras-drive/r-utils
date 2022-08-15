@@ -1,7 +1,7 @@
 use logos::Logos;
 use std::fmt::{Debug, Display, Formatter, Result};
 
-#[derive(Logos, Debug, PartialEq)]
+#[derive(Logos, Debug, PartialEq, Eq)]
 pub enum Token<'a> {
     // Tokens can be literal strings, of any length.
     #[token("export")]
