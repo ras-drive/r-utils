@@ -26,7 +26,7 @@ quick
 | chgrp     | touch | shell (very basic prototype) |
 | chown     | yes   | md5sum (only prints md5sums) |
 | chmod     | arch  | mkdir (prototype)            |
-| cp        |       |                              |
+| cp        |       | nl (prototype)               |
 | dd        |       |                              |
 | df        |       |                              |
 | dircolors |       |                              |
@@ -55,7 +55,6 @@ quick
 | fold      |       |                              |
 | head      |       |                              |
 | join      |       |                              |
-| nl        |       |                              |
 | numfmt    |       |                              |
 | od        |       |                              |
 | paste     |       |                              |
