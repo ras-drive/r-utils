@@ -46,7 +46,8 @@ fn parse_date(args: &Args) -> Result<NaiveDateTime, Box<dyn Error>> {
 
     if date.contains('/') {
         date_time = NaiveDate::from_ymd(
-            date.split('/').next()
+            date.split('/')
+                .next()
                 .expect("error parsing provided date")
                 .parse()
                 .expect("error parsing provided date"),
@@ -62,7 +63,8 @@ fn parse_date(args: &Args) -> Result<NaiveDateTime, Box<dyn Error>> {
                 .expect("error parsing provided date"),
         )
         .and_hms(
-            time.split(':').next()
+            time.split(':')
+                .next()
                 .expect("error parsing provided date")
                 .parse()
                 .expect("error parsing provided date"),
@@ -80,7 +82,8 @@ fn parse_date(args: &Args) -> Result<NaiveDateTime, Box<dyn Error>> {
         Ok(date_time)
     } else if date.contains('-') {
         date_time = NaiveDate::from_ymd(
-            date.split('-').next()
+            date.split('-')
+                .next()
                 .expect("error parsing provided date")
                 .parse()
                 .expect("error parsing provided date"),
@@ -96,7 +99,8 @@ fn parse_date(args: &Args) -> Result<NaiveDateTime, Box<dyn Error>> {
                 .expect("error parsing provided date"),
         )
         .and_hms(
-            time.split(':').next()
+            time.split(':')
+                .next()
                 .expect("error parsing provided date")
                 .parse()
                 .expect("error parsing provided date"),

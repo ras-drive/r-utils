@@ -1,4 +1,3 @@
-
 use clap::ArgMatches;
 
 pub struct Args {
