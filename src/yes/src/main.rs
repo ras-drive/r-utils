@@ -19,12 +19,8 @@ fn main() {
         .get_matches();
 
     let data = match matches.is_present("string") {
-        true => {
-            matches.value_of("string").unwrap().to_string()
-        }
-        false => {
-            String::from("y")
-        }
+        true => matches.value_of("string").unwrap().to_string(),
+        false => String::from("y"),
     };
 
     loop {

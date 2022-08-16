@@ -2,12 +2,12 @@ mod arg_parser;
 mod file_list;
 mod syntax;
 
-use clap:: ArgMatches;
+use clap::ArgMatches;
 use walkdir::WalkDir;
 
 use arg_parser::Args; // arg_parser::arg_parser::Args;
 use file_list::FileList; // file_list::file_list::FileList;
-// use syntax::{get_long, get_metadata};
+                         // use syntax::{get_long, get_metadata};
 
 pub fn search(dir_name: Option<String>, depth: Option<usize>) -> Vec<String> {
     let mut vec = vec![];
