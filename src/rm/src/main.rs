@@ -22,7 +22,7 @@ fn main() {
         match matches.values_of("paths") {
             Some(values) => {
                 let mut paths = vec![];
-                let valid_paths = check_files(&matches, values.collect_into(&mut paths));
+                let valid_paths = check_files(&matches, values.collect_into(&mut paths)).unwrap();
                 remove_files(&matches, valid_paths).unwrap();
 
             }
