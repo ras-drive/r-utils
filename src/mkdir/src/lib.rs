@@ -1,6 +1,5 @@
-use std::{path::Path, io, fs};
 use clap::ArgMatches;
-
+use std::{fs, io, path::Path};
 
 // split into two functions so that check_dirs() doesn't
 // accidently make any paths before it can check that
@@ -33,7 +32,7 @@ pub fn make_dirs(matches: &ArgMatches, dir_paths: &Vec<&str>) -> io::Result<()> 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use clap::{Command, Arg};
+    use clap::{Arg, Command};
     use rand::distributions::{Alphanumeric, DistString};
 
     #[test]
@@ -49,7 +48,7 @@ mod tests {
 
         check_dirs(&vec![&string]).unwrap();
         make_dirs(&args, &vec![&string]).unwrap();
-        
+
         fs::remove_dir_all(&string).unwrap();
     }
 }
