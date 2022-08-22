@@ -1,7 +1,5 @@
-use clap::{Arg, ArgMatches, Command};
-use std::fs;
-use std::io;
-use std::path::Path;
+use clap::{Arg, Command};
+use mkdir::{check_dirs, make_dirs};
 
 // TODO: add the rest of the mkdir arguments
 // -m --mode: set file mode (as in chmod), not a=rwx - umask,
@@ -35,31 +33,4 @@ fn main() {
 
     check_dirs(&dir_paths).expect("error while checking to see if supplied dirs exist");
     make_dirs(&matches, &dir_paths).expect("error while creating supplied dirs");
-}
-
-// split into two functions so that check_dirs() doesn't
-// accidently make any paths before it can check that
-// any of the paths will overwrite anything
-fn check_dirs(dir_paths: &Vec<&str>) -> io::Result<()> {
-    for path in dir_paths {
-        if Path::new(path).exists() || Path::new(path).is_dir() {
-            return Err(io::Error::new(
-                io::ErrorKind::AlreadyExists,
-                format!("file {} already exists", path),
-            ));
-        }
-    }
-
-    Ok(())
-}
-
-fn make_dirs(matches: &ArgMatches, dir_paths: &Vec<&str>) -> io::Result<()> {
-    for path in dir_paths {
-        fs::create_dir(path)?;
-        if matches.is_present("verbose") {
-            println!("mkdir: created directory {}", path);
-        }
-    }
-
-    Ok(())
 }
