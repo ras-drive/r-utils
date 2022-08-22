@@ -25,26 +25,35 @@ pub fn remove_files<'a>(matches: &'a ArgMatches, valid_paths: Vec<&'a Path>) -> 
     for path in valid_paths {
         if path.is_dir() && matches.is_present("recursive") {
             let files = fs::read_dir(path).unwrap_or_else(|_| panic!("error while reading dir {}", path.as_os_str().to_str().unwrap()));
-            recursive_search_remove(files)?;
+            recursive_search_remove(matches, files)?;
             fs::remove_dir(path)
                 .unwrap_or_else(|_| panic!("error while removing directory {:?}", path));
+                if matches.is_present("verbose") {
+                    println!("removed {}", path.to_str().unwrap())
+                }
         } else {
             fs::remove_file(path)
                 .unwrap_or_else(|_| panic!("error while removing file {:?}", path));
+                if matches.is_present("verbose") {
+                    println!("removed {}", path.to_str().unwrap())
+                }
         }
     }
 
     Ok(())
 }
 
-fn recursive_search_remove(read_dir: ReadDir) -> anyhow::Result<()> {
+fn recursive_search_remove(matches: &ArgMatches, read_dir: ReadDir) -> anyhow::Result<()> {
     for i in read_dir {
         match i {
             Ok(entry) => {
                 if entry.path().is_dir() {
-                    recursive_search_remove(fs::read_dir(entry.path().to_str().unwrap()).unwrap())?
+                    recursive_search_remove(matches, fs::read_dir(entry.path().to_str().unwrap()).unwrap())?
                 } else if entry.path().is_file() {
                     fs::remove_file(entry.path())?;
+                    if matches.is_present("verbose") {
+                        println!("removed {}", entry.file_name().to_str().unwrap())
+                    }
                 }
 
             },

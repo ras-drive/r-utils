@@ -10,6 +10,7 @@ fn main() {
         .author("Sarah Petkovic")
         .about("remove files or directories")
         .arg(Arg::new("recursive").short('r'))
+        .arg(Arg::new("verbose").short('v'))
         .arg(
             Arg::new("paths")
                 .required(true)
