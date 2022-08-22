@@ -27,7 +27,7 @@ quick
 | chown     | yes   | md5sum (only prints md5sums) |
 | chmod     | arch  | mkdir (prototype)            |
 | cp        |       | nl (prototype)               |
-| dd        |       |                              |
+| dd        |       | rm (basic prototype)         |
 | df        |       |                              |
 | dircolors |       |                              |
 | install   |       |                              |
@@ -37,7 +37,6 @@ quick
 | mktemp    |       |                              |
 | mv        |       |                              |
 | realpath  |       |                              |
-| rm        |       |                              |
 | rmdir     |       |                              |
 | shred     |       |                              |
 | sync      |       |                              |
