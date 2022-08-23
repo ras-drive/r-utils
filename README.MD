@@ -20,95 +20,94 @@ quick
 
 ## Utilities
 
-| WIP       | Done  | To Do                        |
-|-----------|-------|------------------------------|
-| chcon     | wc    | ls (prototype)               |
-| chgrp     | touch | shell (very basic prototype) |
-| chown     | yes   | md5sum (only prints md5sums) |
-| chmod     | arch  | mkdir (prototype)            |
-| cp        |       | nl (prototype)               |
-| dd        |       | rm (basic prototype)         |
-| df        |       |                              |
-| dircolors |       |                              |
-| install   |       |                              |
-| ln        |       |                              |
-| mkfifo    |       |                              |
-| mknod     |       |                              |
-| mktemp    |       |                              |
-| mv        |       |                              |
-| realpath  |       |                              |
-| rmdir     |       |                              |
-| shred     |       |                              |
-| sync      |       |                              |
-| truncate  |       |                              |
-| b2sum     |       |                              |
-| base32    |       |                              |
-| base64    |       |                              |
-| cat       |       |                              |
-| cksum     |       |                              |
-| comm      |       |                              |
-| csplit    |       |                              |
-| cut       |       |                              |
-| expand    |       |                              |
-| fmt       |       |                              |
-| fold      |       |                              |
-| head      |       |                              |
-| join      |       |                              |
-| numfmt    |       |                              |
-| od        |       |                              |
-| paste     |       |                              |
-| ptx       |       |                              |
-| pr        |       |                              |
-| sha1sum   |       |                              |
-| shuf      |       |                              |
-| sort      |       |                              |
-| split     |       |                              |
-| sum       |       |                              |
-| tac       |       |                              |
-| tail      |       |                              |
-| tr        |       |                              |
-| tsort     |       |                              |
-| unexpand  |       |                              |
-| uniq      |       |                              |
-| uname     |       |                              |
-| basename  |       |                              |
-| chroot    |       |                              |
-| time      |       |                              |
-| dirname   |       |                              |
-| du        |       |                              |
-| echo      |       |                              |
-| env       |       |                              |
-| expr      |       |                              |
-| factor    |       |                              |
-| false     |       |                              |
-| groups    |       |                              |
-| hostid    |       |                              |
-| id        |       |                              |
-| link      |       |                              |
-| logname   |       |                              |
-| nice      |       |                              |
-| nohup     |       |                              |
-| nproc     |       |                              |
-| pathchk   |       |                              |
-| pinky     |       |                              |
-| printenv  |       |                              |
-| printf    |       |                              |
-| pwd       |       |                              |
-| readlink  |       |                              |
-| runcon    |       |                              |
-| seq       |       |                              |
-| sleep     |       |                              |
-| stat      |       |                              |
-| stdbuf    |       |                              |
-| stty      |       |                              |
-| tee       |       |                              |
-| test      |       |                              |
-| Timeout   |       |                              |
-| true      |       |                              |
-| tty       |       |                              |
-| uname     |       |                              |
-| unlink    |       |                              |
-| Uptime    |       |                              |
-| who       |       |                              |
-| whoami    |       |                              |
-
+| WIP       | Done  | To Do                           |
+|-----------|-------|---------------------------------|
+| chcon     | wc    | ls (prototype)                  |
+| chgrp     | touch | shell (very basic prototype)    |
+| chown     | yes   | md5sum (only prints md5sums)    |
+| chmod     | arch  | mkdir (prototype)               |
+| cp        |       | nl (prototype)                  |
+| dd        |       | rm (basic arguments and testing)|
+| df        |       |                                 |
+| dircolors |       |                                 |
+| install   |       |                                 |
+| ln        |       |                                 |
+| mkfifo    |       |                                 |
+| mknod     |       |                                 |
+| mktemp    |       |                                 |
+| mv        |       |                                 |
+| realpath  |       |                                 |
+| rmdir     |       |                                 |
+| shred     |       |                                 |
+| sync      |       |                                 |
+| truncate  |       |                                 |
+| b2sum     |       |                                 |
+| base32    |       |                                 |
+| base64    |       |                                 |
+| cat       |       |                                 |
+| cksum     |       |                                 |
+| comm      |       |                                 |
+| csplit    |       |                                 |
+| cut       |       |                                 |
+| expand    |       |                                 |
+| fmt       |       |                                 |
+| fold      |       |                                 |
+| head      |       |                                 |
+| join      |       |                                 |
+| numfmt    |       |                                 |
+| od        |       |                                 |
+| paste     |       |                                 |
+| ptx       |       |                                 |
+| pr        |       |                                 |
+| sha1sum   |       |                                 |
+| shuf      |       |                                 |
+| sort      |       |                                 |
+| split     |       |                                 |
+| sum       |       |                                 |
+| tac       |       |                                 |
+| tail      |       |                                 |
+| tr        |       |                                 |
+| tsort     |       |                                 |
+| unexpand  |       |                                 |
+| uniq      |       |                                 |
+| uname     |       |                                 |
+| basename  |       |                                 |
+| chroot    |       |                                 |
+| time      |       |                                 |
+| dirname   |       |                                 |
+| du        |       |                                 |
+| echo      |       |                                 |
+| env       |       |                                 |
+| expr      |       |                                 |
+| factor    |       |                                 |
+| false     |       |                                 |
+| groups    |       |                                 |
+| hostid    |       |                                 |
+| id        |       |                                 |
+| link      |       |                                 |
+| logname   |       |                                 |
+| nice      |       |                                 |
+| nohup     |       |                                 |
+| nproc     |       |                                 |
+| pathchk   |       |                                 |
+| pinky     |       |                                 |
+| printenv  |       |                                 |
+| printf    |       |                                 |
+| pwd       |       |                                 |
+| readlink  |       |                                 |
+| runcon    |       |                                 |
+| seq       |       |                                 |
+| sleep     |       |                                 |
+| stat      |       |                                 |
+| stdbuf    |       |                                 |
+| stty      |       |                                 |
+| tee       |       |                                 |
+| test      |       |                                 |
+| Timeout   |       |                                 |
+| true      |       |                                 |
+| tty       |       |                                 |
+| uname     |       |                                 |
+| unlink    |       |                                 |
+| Uptime    |       |                                 |
+| who       |       |                                 |
+| whoami    |       |                                 |
