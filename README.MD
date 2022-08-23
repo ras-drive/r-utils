@@ -28,7 +28,7 @@ quick
 | chmod     | arch  | mkdir (prototype)               |
 | cp        |       | nl (prototype)                  |
 | dd        |       | rm (basic arguments and testing)|
-| df        |       |                                 |
+| df        |       | pwd (needs tests written)       |
 | dircolors |       |                                 |
 | install   |       |                                 |
 | ln        |       |                                 |
@@ -93,7 +93,6 @@ quick
 | pinky     |       |                                 |
 | printenv  |       |                                 |
 | printf    |       |                                 |
-| pwd       |       |                                 |
 | readlink  |       |                                 |
 | runcon    |       |                                 |
 | seq       |       |                                 |
