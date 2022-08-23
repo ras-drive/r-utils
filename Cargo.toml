@@ -10,5 +10,6 @@ members = [
     "src/arch",
     "src/mkdir",
     "src/nl",
-    "src/rm"
+    "src/rm",
+    "src/pwd"
 ]
