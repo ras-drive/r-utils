@@ -28,7 +28,7 @@ quick
 | chmod     | arch  | mkdir (prototype)               |
 | cp        | sleep | nl (prototype)                  |
 | dd        | whoami| rm (basic arguments and testing)|
-| df        |       | pwd (needs tests written)       |
+| df        | uname | pwd (needs tests written)       |
 | dircolors |       |                                 |
 | install   |       |                                 |
 | ln        |       |                                 |
@@ -70,7 +70,6 @@ quick
 | tsort     |       |                                 |
 | unexpand  |       |                                 |
 | uniq      |       |                                 |
-| uname     |       |                                 |
 | basename  |       |                                 |
 | chroot    |       |                                 |
 | time      |       |                                 |
