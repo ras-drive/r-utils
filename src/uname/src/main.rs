@@ -34,6 +34,12 @@ fn main() {
                 .help("print the machine hardware name"),
         )
         .arg(
+            Arg::new("processor")
+                .short('p')
+                .long("processor")
+                .help("print the hardware platform (non-portable)"),
+        )
+        .arg(
             Arg::new("hardware-platform")
                 .short('i')
                 .long("hardware-platform")
