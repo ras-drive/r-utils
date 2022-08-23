@@ -26,7 +26,7 @@ quick
 | chgrp     | touch | shell (very basic prototype)    |
 | chown     | yes   | md5sum (only prints md5sums)    |
 | chmod     | arch  | mkdir (prototype)               |
-| cp        |       | nl (prototype)                  |
+| cp        | sleep | nl (prototype)                  |
 | dd        |       | rm (basic arguments and testing)|
 | df        |       | pwd (needs tests written)       |
 | dircolors |       |                                 |
@@ -96,7 +96,6 @@ quick
 | readlink  |       |                                 |
 | runcon    |       |                                 |
 | seq       |       |                                 |
-| sleep     |       |                                 |
 | stat      |       |                                 |
 | stdbuf    |       |                                 |
 | stty      |       |                                 |
