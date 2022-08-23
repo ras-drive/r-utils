@@ -7,7 +7,9 @@ fn main() {
         .version("0.1.0")
         .author("Sarah Petkovic")
         .about("print or check md5 checksums")
-        .arg(Arg::new("filename").required(false))
+        .arg(Arg::new("filename")
+            .required(false))
+        .arg(Arg::new(""))
         .get_matches();
 
     run(matches).unwrap();
