@@ -14,4 +14,5 @@ members = [
     "src/pwd",
     "src/sleep",
     "src/whoami",
+    "src/uname",
 ]
