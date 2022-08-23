@@ -1,6 +1,6 @@
-use std::{thread, time};
 use clap::ArgMatches;
 use regex::Regex;
+use std::{thread, time};
 
 pub fn get_duration(matches: ArgMatches) -> u64 {
     let re = Regex::new(r"[0-9]").unwrap();
@@ -35,7 +35,7 @@ pub fn sleep(miliseconds: u64) {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use clap::{Command, Arg};
+    use clap::{Arg, Command};
 
     #[test]
     fn one_second() {

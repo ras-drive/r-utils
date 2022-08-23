@@ -3,16 +3,16 @@ use std::{env, io, path::PathBuf};
 
 ///
 /// pwd
-/// 
+///
 /// 0.1.0
 /// Description: print name of current/working directory
-/// 
+///
 /// Args:
 /// -L, --logical: use PWD from environment, even if it contains symlinks
 /// -P, --physical: avoid all symlinks
-/// 
+///
 /// Default is physical
-/// 
+///
 fn main() {
     let matches = Command::new("pwd")
         .version("0.1.0")
