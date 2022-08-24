@@ -329,6 +329,7 @@ dependencies = [
  "anyhow",
  "clap",
  "md5",
+ "rand",
 ]
 
 [[package]]

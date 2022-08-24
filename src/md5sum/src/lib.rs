@@ -50,6 +50,7 @@ pub fn run(matches: ArgMatches) -> anyhow::Result<()> {
         }
         if failed > 0 {
             println!("md5sum: WARNING: {} computed checksum  did NOT match", failed);
+            return Err(anyhow::Error::msg("error, failed checksums while matching"));
         }
 
     } else {
@@ -86,9 +87,8 @@ pub fn run(matches: ArgMatches) -> anyhow::Result<()> {
         }
 
         for (key, value) in hashmap {
-            print!("{} {}", value, key);
+            println!("{} {}", value, key);
         }
-        println!();
     }
         
     Ok(())
@@ -100,12 +100,71 @@ fn checksum(input: &String) -> Digest {
 
 #[cfg(test)]
 mod tests {
+    use std::io::Write;
+
+    use clap::{Command, Arg};
+    use rand::distributions::{Alphanumeric, DistString};
+
     use super::*;
 
     #[test]
     fn test_checksum() {
         let input = "hello world".to_string();
         let output = checksum(&input);
-        assert_eq!(format!("{:x}", output), "5eb63bbbe01eeed093cb22bb8f5acdc3");
+        const VERIFIED_SUM: &str = "5eb63bbbe01eeed093cb22bb8f5acdc3";
+        assert_eq!(format!("{:x}", output), VERIFIED_SUM);
+    }
+
+    #[test]
+    fn test_check() {
+        let string = Alphanumeric.sample_string(&mut rand::thread_rng(), 16);
+        let matches = Command::new("test")
+        .arg(Arg::new("filename")
+            .required(false)
+            .multiple_values(true)
+            .help("With no FILE, or when FILE is -, read standard input."))
+        .arg(Arg::new("check")
+            .short('c')
+            .long("check")
+            .help("read checksums from the FILEs and check them"))
+        .get_matches_from(vec!["test", "-c", &format!("{}.md5sum", &string)]);
+
+        let mut md5 = File::create(Path::new(&format!("{}.md5sum", &string))).unwrap();
+        md5.write_all(format!("5eb63bbbe01eeed093cb22bb8f5acdc3 {}", &format!("{}.txt", &string)).as_bytes()).unwrap();
+
+        let mut file = File::create(Path::new(&format!("{}.txt", &string))).unwrap();
+        file.write_all(b"hello world").unwrap();
+
+        run(matches).unwrap();
+        fs::remove_file(Path::new(&format!("{}.md5sum", &string))).unwrap();
+        fs::remove_file(Path::new(&format!("{}.txt", &string))).unwrap();
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_check_should_panic() {
+        let string = Alphanumeric.sample_string(&mut rand::thread_rng(), 16);
+        let matches = Command::new("test")
+        .arg(Arg::new("filename")
+            .required(false)
+            .multiple_values(true)
+            .help("With no FILE, or when FILE is -, read standard input."))
+        .arg(Arg::new("check")
+            .short('c')
+            .long("check")
+            .help("read checksums from the FILEs and check them"))
+        .get_matches_from(vec!["test", "-c", &format!("{}.md5sum", &string)]);
+
+        let mut md5 = File::create(Path::new(&format!("{}.md5sum", &string))).unwrap();
+        md5.write_all(format!("5eb63bbbe01eeed093cb22bb8f5acdc3 {}", &format!("{}.txt", &string)).as_bytes()).unwrap();
+
+        let mut file = File::create(Path::new(&format!("{}.txt", &string))).unwrap();
+        file.write_all(b"NOT HELLO WORLD").unwrap();
+
+        if run(matches).is_err() {
+            fs::remove_file(Path::new(&format!("{}.md5sum", &string))).unwrap();
+            fs::remove_file(Path::new(&format!("{}.txt", &string))).unwrap();
+            panic!("test success!");
+        }
     }
 }
