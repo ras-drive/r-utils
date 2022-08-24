@@ -15,6 +15,13 @@ fn main() {
             .short('c')
             .long("check")
             .help("read checksums from the FILEs and check them"))
+        .arg(Arg::new("zero")
+            .short('z')
+            .long("zero")
+            .help("end each output line with NUL, not newline, and disable file name escaping"))
+        .arg(Arg::new("quiet")
+            .long("quiet")
+            .help("don't print OK for each successfully verified file"))
         .get_matches();
 
     run(matches).unwrap();

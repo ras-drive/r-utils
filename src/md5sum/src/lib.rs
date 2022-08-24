@@ -37,7 +37,9 @@ pub fn run(matches: ArgMatches) -> anyhow::Result<()> {
                         Ok(_) => {
                             // assert_eq!(&format!("{:?}", checksum(&s)), value);
                             if &format!("{:?}", checksum(&s)) == value {
-                                println!("{}: OK", &filename);
+                                if !matches.is_present("quiet") {
+                                    println!("{}: OK", &filename);
+                                }
                             } else {
                                 println!("{}: FAILED", &filename);
                                 failed += 1;
@@ -87,7 +89,11 @@ pub fn run(matches: ArgMatches) -> anyhow::Result<()> {
         }
 
         for (key, value) in hashmap {
-            println!("{} {}", value, key);
+            if !matches.is_present("zero") {
+                println!("{} {}", value, key);
+            } else {
+                print!("{} {}\u{0000}", value, key);
+            }
         }
     }
         
