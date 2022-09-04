@@ -12,7 +12,7 @@
 
 fn main() {
     let matches = clap::App::new("yes")
-        .version("0.1")
+        .version("1.0.0")
         .author("Sarah Petkovic")
         .about("output a string repeatedly until killed")
         .arg(clap::Arg::new("string").required(false))

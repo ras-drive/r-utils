@@ -3,7 +3,7 @@ use platform_info::*;
 
 fn main() {
     let matches = Command::new("uname")
-        .version("0.1.0")
+        .version("1.0.0")
         .author("Sarah Petkovic")
         .about("Print certain system information.  With no OPTION, same as -s.")
         .arg(Arg::new("all").short('a').long("all").help(

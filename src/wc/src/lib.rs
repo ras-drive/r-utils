@@ -26,7 +26,7 @@ use regex::Regex;
 
 pub fn run() {
     let matches = Command::new("wc")
-        .version("1.0")
+        .version("1.0.0")
         .author("Sarah Petkovic")
         .about("print newline, word, and byte counts for each file")
         .arg(Arg::new("filename"))

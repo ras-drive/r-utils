@@ -40,7 +40,7 @@ mod tests {
     #[test]
     fn one_second() {
         let matches = Command::new("test")
-        .version("1.0")
+        .version("1.0.0")
         .author("Sarah Petkovic")
         .about("delay for a specified amount of time")
         .arg(Arg::new("NUMBER")
@@ -55,7 +55,7 @@ mod tests {
     #[test]
     fn one_minute() {
         let matches = Command::new("test")
-        .version("1.0")
+        .version("1.0.0")
         .author("Sarah Petkovic")
         .about("delay for a specified amount of time")
         .arg(Arg::new("NUMBER")
@@ -70,7 +70,7 @@ mod tests {
     #[test]
     fn one_hour() {
         let matches = Command::new("test")
-        .version("1.0")
+        .version("1.0.0")
         .author("Sarah Petkovic")
         .about("delay for a specified amount of time")
         .arg(Arg::new("NUMBER")
@@ -85,7 +85,7 @@ mod tests {
     #[test]
     fn one_day() {
         let matches = Command::new("test")
-        .version("1.0")
+        .version("1.0.0")
         .author("Sarah Petkovic")
         .about("delay for a specified amount of time")
         .arg(Arg::new("NUMBER")

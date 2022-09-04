@@ -6,7 +6,7 @@ use std::io;
 
 fn main() -> Result<(), io::Error> {
     let matches = Command::new("touch")
-        .version("1.0")
+        .version("1.0.0")
         .author("Sarah Petkovic")
         .about("changes filetime to now, if file doesn't exist create an empty file with same name")
         .arg(Arg::new("filename").required(true))

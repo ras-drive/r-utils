@@ -3,7 +3,7 @@ use sleep::{get_duration, sleep};
 
 fn main() {
     let matches = Command::new("sleep")
-        .version("1.0")
+        .version("1.0.0")
         .author("Sarah Petkovic")
         .about("delay for a specified amount of time")
         .arg(Arg::new("NUMBER")
