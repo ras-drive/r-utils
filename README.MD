@@ -1,4 +1,5 @@
-## What is the purpose of this repo?
+# What is the purpose of this repo?
+
 I'm mostly writing this as practice to get more used
 to writing rust code but I also thought it was a fun
 way to get more into OS development by starting the
@@ -14,6 +15,7 @@ one day have my own custom Linux userspace to pair with
 the kernel(I know this is obviously a massive ways off)!
 
 ## Contacts
+
 If you for whatever reason need/want to contact me my
 Discord handle is Sarah P#0227 and will respond relatively
 quick
