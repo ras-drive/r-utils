@@ -663,9 +663,9 @@ checksum = "73473c0e59e6d5812c5dfe2a064a6444949f089e20eec9a2e5506596494e4623"
 
 [[package]]
 name = "subst"
-version = "0.1.2"
+version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "aae621f3222a86d92067d1711b0a22786b98abf754b482555f663b143ea6b4f9"
+checksum = "bdf5c2f9dba86dae331c01e1d5d52750d4fe773a4d2267a0ab3c725296e5b596"
 dependencies = [
  "memchr",
  "unicode-width",
