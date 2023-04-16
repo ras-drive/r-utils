@@ -1,18 +1,72 @@
-[workspace]
+[package]
+name = "r-utils"
+version = "0.1.0"
+edition = "2021"
 
-members = [
-    "src/wc",
-    "src/touch",
-    "src/shell",
-    "src/md5sum",
-    "src/yes",
-    "src/ls",
-    "src/arch",
-    "src/mkdir",
-    "src/nl",
-    "src/rm",
-    "src/pwd",
-    "src/sleep",
-    "src/whoami",
-    "src/uname",
-]
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "arch"
+path = "src/arch/main.rs"
+
+[[bin]]
+name = "ls"
+path = "src/ls/main.rs"
+
+[[bin]]
+name = "md5sum"
+path = "src/md5sum/main.rs"
+
+[[bin]]
+name = "mkdir"
+path = "src/mkdir/main.rs"
+
+[[bin]]
+name = "nl"
+path = "src/nl/main.rs"
+
+[[bin]]
+name = "pwd"
+path = "src/pwd/main.rs"
+
+[[bin]]
+name = "rm"
+path = "src/rm/main.rs"
+
+[[bin]]
+name = "shell"
+path = "src/shell/main.rs"
+
+[[bin]]
+name = "sleep"
+path = "src/sleep/main.rs"
+
+[[bin]]
+name = "touch"
+path = "src/touch/main.rs"
+
+[[bin]]
+name = "uname"
+path = "src/uname/main.rs"
+
+[[bin]]
+name = "wc"
+path = "src/wc/main.rs"
+
+[[bin]]
+name = "yes"
+path = "src/yes/main.rs"
+
+[dependencies]
+clap = { version = "3.1.18", features = ["derive"] }
+rand = "0.8.5"
+platform-info = "0.2" # for arch and uname
+walkdir = "2" # for ls
+md5 = "0.7.0" # for md5sum
+anyhow = "1.0.6" # for rm
+promptly = "0.3.1" # for rm
+logos = "0.12.1" # for shell
+subst = "0.1.2" # for shell
+regex = "1" # for sleep and wc
+filetime = "0.2.16" # for touch
+chrono = "0.4" # for touch

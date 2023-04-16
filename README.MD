@@ -25,8 +25,8 @@ quick
 | chown     | yes   | md5sum (only prints md5sums)    |
 | chmod     | arch  | mkdir (prototype)               |
 | cp        | sleep | nl (prototype)                  |
-| dd        | whoami| rm (basic arguments and testing)|
-| df        | uname | pwd (needs tests written)       |
+| dd        | uname | rm (basic arguments and testing)|
+| df        |       | pwd (needs tests written)       |
 | dircolors |       |                                 |
 | install   |       |                                 |
 | ln        |       |                                 |
@@ -105,3 +105,4 @@ quick
 | unlink    |       |                                 |
 | Uptime    |       |                                 |
 | who       |       |                                 |
+| whoami    |       |                                 |

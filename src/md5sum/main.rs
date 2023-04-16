@@ -1,0 +1,14 @@
+use clap::{Arg, Command};
+
+use r_utils::md5sum::run;
+
+fn main() {
+    let matches = Command::new("md5sum")
+        .version("0.1")
+        .author("Sarah Petkovic")
+        .about("print or check md5 checksums")
+        .arg(Arg::new("filename").required(false))
+        .get_matches();
+
+    run(matches);
+}

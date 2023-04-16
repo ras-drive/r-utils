@@ -3,3 +3,8 @@
 
 /src/wc/target/
 /target/
+
+
+# Added by cargo
+
+/target
